@@ -1,0 +1,41 @@
+name: Build Tauri macOS App
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Set up Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+
+      - name: Install Tauri CLI
+        run: cargo install tauri-cli
+
+      - name: Set executable permissions for Tauri CLI
+        run: chmod +x ./node_modules/.bin/tauri
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Tauri App
+        run: npm run tauri build
+
+      - name: Upload .app artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: macOS-App
+          path: src-tauri/target/release/bundle/macos/*.app

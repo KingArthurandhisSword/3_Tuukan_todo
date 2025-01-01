@@ -1,0 +1,255 @@
+/* Tyylit */
+body {
+    font-family: "Delius", serif;
+    transform: scaleY(0.9); /* Tekstin korkeus puristuu */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/*
+img {
+    position: absolute; 
+    top: 0;
+    left: 260px;
+    width: 50%; /* Kuva täyttää koko leveyden */
+
+
+
+    h1 {
+        position: fixed; /* Mahdollistaa tarkan sijoittelun */
+        top: 5%; /* Nosta otsikkoa suhteessa näkyvään alueeseen */
+        left: 50%; /* Sijoita vaakasuunnassa keskelle */
+        transform: translate(-50%, 0); /* Keskittää tarkasti */
+        font-family: "Pacifico", cursive;
+        color: rgb(246, 248, 250);
+        text-align: center;
+        font-size: clamp(1rem, 2vw, 3rem); /* Skaalaa fonttikoko automaattisesti */
+        margin: 0; /* Poista marginaalit */
+    }
+    
+
+#content {
+    display: flex; /* Aktivoi Flexbox */
+    flex-direction: column; /* Aseta lapset pystysuoraan */
+    align-items: center; /* Keskittää lapset vaakasuunnassa */
+    gap: 20px; /* Lisää väliä elementtien välille */
+    width: 100%; /* Vie täysi leveys */
+    max-width: 400px; /* Rajoita leveyttä */
+    margin: 0 auto; /* Keskittää näkymän vaakasuunnassa */
+}
+  
+
+  #drag-area {
+    position: absolute; /* Flex ei sovi tähän, käytetään absolutea */
+    top: 0; /* Aseta yläreunaan */
+    left: 0; /* Aseta vasempaan reunaan */
+    width: 100vw; /* Tee alue koko näytön levyiseksi */
+    height: 100vh; /* Tee alue koko näytön korkuiseksi */
+    -webkit-app-region: drag; /* Aktivoi raahaus (Electron ja Tauri) */
+    background-size: cover; /* Skaalaa SVG täyttämään koko alue */
+    border-radius: 0; /* Poista kulmien pyöristykset, jos haluat koko alueen */
+    color: white; /* Tekstin väri */
+    display: flex;
+    justify-content: right; /* Tekstin sijoitus oikealle (jos tarpeen) */
+    align-items: center; /* Tekstin keskitys pystysuunnassa */
+    font-size: 14px; /* Tekstin koko */
+    overflow: hidden; /* Estä vierityspalkit */
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    
+
+    display: flex;
+    flex-direction: column;
+  }
+
+
+  .container {
+    width: 100%; /* Kontainerin leveys suhteessa vanhempaan elementtiin */
+    height: 300px; /* Kiinteä korkeus */
+    display: flex; /* Keskittää lapsielementit */
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Leikkaa kuvan, jos se menee yli */
+  }
+
+
+.completed {
+    background-color: none;
+}
+
+.done {
+    text-decoration: none; /* Tai mitä tahansa visuaalista muutosta haluat */
+}
+  
+
+#widget-container.grabbing {
+    cursor: grabbing; /* Visuaalinen palaute vedettäessä */
+    background-color: rgba(121, 64, 64, 0); /* Täysin läpinäkyvä */
+    border: none;
+    box-shadow: none;
+}
+
+#todo-input {
+    width: 100%; /* Vähennä leveysprosenttia */
+    padding: 8px; /* Vähennä sisätilaa */
+    font-size: 10px; /* Vähennä fonttikokoa */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    z-index: 100; /* Varmista, että syöttökenttä toimii */
+    display: flex;
+    justify-content: left; /* Keskittää tekstin vaakasuunnassa */
+    flex: 1; /* Tekstikenttä vie jäljellä olevan tilan */
+}
+
+#todo-list {
+    list-style: none; /* Poista pisteet tai numerot */
+    padding: 0; /* Poista ylimääräiset sisennykset */
+    margin: 0; /* Poista ylimääräiset marginaalit */
+    width: 100%; /* Skaalaa vanhemman leveyteen */
+}
+
+#todo-list li {
+    padding: 5px 10px;
+    border-bottom: 1px solid transparent;
+    white-space: normal; /* Salli rivittyminen */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 15px;
+    width: 100%; /* Täyttää koko todo-list-leveyden */
+    box-sizing: border-box; /* Sisältää paddingin ja borderin */
+
+}
+
+#todo-item {
+    padding: 51px;
+
+}
+
+#todo-form {
+    margin-top: 60px; /* Poistaa ylimääräisen tilan yläpuolelta */
+    margin-left: 30px;
+    padding: 10; /* Poistaa sisäisen tyhjän tilan */
+    display: flex;
+    justify-content: flex-start; 
+    align-items: flex-start;
+    width: 90%; /* Leveys täyttää koko vanhemman elementin */
+    max-width: 400px; /* Rajoittaa leveyden */
+}
+
+
+
+form {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+input {
+    flex: 1;
+    padding: 5px;
+    margin-right: 10px;
+}
+
+
+h1 {
+    color: rgb(241, 246, 252);
+    justify-content: center;
+    align-items: flex-start;
+    display: flex; /*Tämä sijoittaa tekstin keskelle*/
+    height: 40px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+#app {
+    background: #f1e3fd;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+form {
+    display: flex;
+    margin-bottom: 20px;
+    margin-left: 60px;
+}
+
+input {
+    flex: 1;
+    padding: 5px;
+}
+
+.done-button {
+    width: 15px;
+    height: 15px;
+    border-radius: 100%, flex;
+    background-color: rgb(255, 255, 255);
+    margin-right: 10px;
+    margin-left: 20px;
+    cursor: pointer;
+    padding: 0;
+}
+
+.done-button.completed {
+    background-color: #000000; /* Tummenee kun tehtävä on valmis */
+    border-color: #342d3a; /* Muuttaa reunan väriä */
+}
+
+li.completed {
+     /* Teksti yliviivataan */
+    color: rgb(26, 25, 25); /* Vaihtoehtoisesti harmaa väri */
+    
+}
+
+
+.delete-button {
+    background-color: transparent; /* Läpinäkyvä tausta */
+    color: rgb(0, 0, 0); /* Tekstin väri */
+    border: none; /* Poistaa reunuksen */
+    cursor: pointer; /* Muuttaa osoittimen kättä muistuttavaksi */
+    padding: 5px; /* Lisää sisäistä marginaalia */
+    margin-left: auto; /* Työntää painikkeen oikealle */
+    align-self: center; /* Varmistaa pystykohdistuksen */
+}
+
+button {
+    padding: 5px 10px;
+    height: 30px;
+    background-color: #602567;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 12px;
+    cursor: pointer;
+    z-index: 100; /* Varmista, että painike toimii */
+    margin-right: 20px; /* Lisää marginaali oikeaan kulmaan */
+}
+
+ul {
+    margin: 0;
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    display: flex; /* Aktivoi Flexbox */
+    align-items: center; /* Kohdistaa kaikki pystysuunnassa keskelle */
+    justify-content: space-between; /* Jakaa elementit vasemmalta oikealle */
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
+    color: rgb(226, 233, 237);
+    gap: 10px; /* Lisää väliä elementtien välillä */
+    max-height: 500px;
+}
