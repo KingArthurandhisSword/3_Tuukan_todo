@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: macos-12
 
     steps:
     - name: Checkout code
@@ -18,14 +18,19 @@ jobs:
       with:
         node-version: 16
 
-    - name: Install Rust
+    - name: Set up Rust
       uses: actions-rs/toolchain@v1
       with:
-        toolchain: stable
-        profile: minimal
+        toolchain: 1.73.0  # Yhteensopiva versio Montereyn kanssa
+        profile: minimal    # Vain olennaiset komponentit
+        override: true  
 
     - name: Install dependencies
       run: npm install
+
+    - name: Install Tauri CLI
+      run: npm install -g @tauri-apps/cli@1.2.0  # Yhteensopiva Tauri CLI
+
 
     - name: Build Tauri app
       run: npm run tauri build
