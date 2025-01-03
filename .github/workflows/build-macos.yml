@@ -37,5 +37,5 @@ jobs:
       - name: Upload macOS build artifact
         uses: actions/upload-artifact@v3
         with:
-          name: macOS-App
+          name: Todo_macOS-App
           path: src-tauri/target/release/bundle/macos/*.app
